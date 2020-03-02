@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { setOdds } from '../actions';
 
 class Bet extends Component {
   render() {
@@ -6,7 +7,7 @@ class Bet extends Component {
       <div>
         <ul>
           <li>
-            <p>{this.props.bet.homeTeam.team_name} vs {this.props.bet.awayTeam.team_name}</p>
+            <p>{this.props.fixture.homeTeam.team_name} vs {this.props.fixture.awayTeam.team_name}</p>
           </li>
         </ul>
       </div>

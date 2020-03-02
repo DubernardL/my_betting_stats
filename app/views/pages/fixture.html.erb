@@ -1,9 +1,4 @@
-<div id="root"></div>
-<div class="container">
-  <div class="logo-league">
-    <img src="<%= @matchs.first["league"]["logo"] %>" style="width: 100px;" alt="">
-    <img src="<%= @matchs.first["league"]["flag"] %>" style="width: 100px;" alt="">
-  </div>
+<div>
   <ul id="bet-list">
     <% @matchs.each do |bet| %>
       <%= link_to fixture_path(bet["fixture_id"]), class:"trash" do %>
