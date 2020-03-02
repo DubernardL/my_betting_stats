@@ -1,5 +1,5 @@
 import "bootstrap"
 
 // React components
-import "../bet"
+// import "../bet"
 
