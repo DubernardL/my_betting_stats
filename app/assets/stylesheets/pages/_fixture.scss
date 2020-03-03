@@ -1,0 +1,25 @@
+#bet-list {
+  list-style: none;
+  padding: 0;
+}
+
+.logo-team {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.vs {
+  margin: 0 15px 0 10px;
+}
+
+.odds {
+  // display: flex;
+  // justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+.odd {
+  text-align: center;
+}

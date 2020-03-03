@@ -1,12 +1,11 @@
 <div class="container">
-  <div class="logo-league">
+  <div class="logo-team">
     <img src="<%= @match.first["homeTeam"]["logo"] %>" style="width: 100px;" alt="">
-    <span>VS</span>
+    <h1 class="vs">VS</h1>
     <img src="<%= @match.first["awayTeam"]["logo"] %>" style="width: 100px;" alt="">
   </div>
 
-  <div id="bet-list">
-  </div>
+  <ul id="bet-list">
+  </ul>
 
 </div>
-
