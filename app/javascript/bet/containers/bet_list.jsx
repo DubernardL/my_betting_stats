@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 // actions
-import { setFixtures } from '../actions';
 import { setOdds } from '../actions';
 // components
 import Bet from '../components/bet';
@@ -11,17 +11,19 @@ class BetList extends Component {
 
   componentDidMount() {
     // TODO: dispatch an action to load fixtures!
-    this.props.setFixtures();
+    this.props.setOdds(this.props.fixtureFromParams);
   }
 
   render () {
     return (
       <div>
-        {this.props.fixtures.map((fixture) =>
+        {this.props.odds.map((odd) =>
           {
-            return(
-              <Bet fixture={fixture} key={fixture.fixture_id}/>
-            )
+            odd.values.map((bet) => {
+              return(
+                <Bet odd={odd} bet={bet} key={odd.label_id}/>
+              )
+            })
           }
         )}
       </div>
@@ -31,16 +33,14 @@ class BetList extends Component {
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
-    {
-      setFixtures: setFixtures
-    },
+    { setOdds: setOdds },
     dispatch
   );
 }
 
 function mapStateToProps(state) {
   return {
-    fixtures: state.fixtures
+    odds: state.odds
   };
 }
 

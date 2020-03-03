@@ -1,26 +1,12 @@
 <div class="container">
   <div class="logo-league">
-    <img src="<%= @matchs.first["homeTeam"]["logo"] %>" style="width: 100px;" alt="">
+    <img src="<%= @match.first["homeTeam"]["logo"] %>" style="width: 100px;" alt="">
     <span>VS</span>
-    <img src="<%= @matchs.first["awayTeam"]["logo"] %>" style="width: 100px;" alt="">
+    <img src="<%= @match.first["awayTeam"]["logo"] %>" style="width: 100px;" alt="">
   </div>
-  <ul id="bet-list">
-    <% @bets.each do |bet| %>
-      <li>
-        <div>
-          <%= bet["label_name"] %>
-        </div>
-        <div class="d-flex">
-          <% bet["values"].each do |value| %>
-            <div class="m-2">
-              <%= value["value"] %> <br>
-              <button>
-                <%= value["odd"] %>
-              </button>
-            </div>
-          <% end %>
-        </div>
-      </li>
-    <% end %>
-  </ul>
+
+  <div id="bet-list">
+  </div>
+
 </div>
+

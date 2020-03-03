@@ -10,11 +10,14 @@ export function setOdds(fixture_id) {
   return fetch(`https://api-football-v1.p.rapidapi.com/v2/odds/fixture/${fixture_id}`, options)
     .then(response => response.json())
     .then((data) => {
-      console.log(data);
-      const odds = data.api.odds.bookmakers
+      const bookmakers = data.api.odds[0].bookmakers
+      const bookmaker = bookmakers.filter((bookmaker) => { return bookmaker.bookmaker_id === 16 })
+      const odds = bookmaker[0].bets
+      // Array de odds
       return {
         type: 'SET_ODDS',
         payload: odds
       };
-    });
+    }
+  );
 }
