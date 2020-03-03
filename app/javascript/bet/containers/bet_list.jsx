@@ -15,27 +15,17 @@ class BetList extends Component {
   }
 
   render () {
-    return (
+    let id = 0;
+    return(
       <div>
-        {this.props.odds.map((odd) =>
-          {
-            odd.values.map((bet) => {
-              return(
-                <Bet odd={odd} bet={bet} key={odd.label_id}/>
-              )
-            })
-          }
-        )}
+        {
+          this.props.odds.map((odd) => {
+            return <Bet odd={odd} key={id += 1}/>
+          })
+        }
       </div>
     );
   }
-}
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(
-    { setOdds: setOdds },
-    dispatch
-  );
 }
 
 function mapStateToProps(state) {
@@ -43,5 +33,10 @@ function mapStateToProps(state) {
     odds: state.odds
   };
 }
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ setOdds }, dispatch);
+}
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(BetList);

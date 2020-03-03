@@ -10,6 +10,9 @@ import { createHistory as history } from 'history';
 // reducers
 import oddsReducer from './reducers/odds_reducer';
 
+// containers
+import BetList from './containers/bet_list';
+
 // components
 import App from './components/app';
 
