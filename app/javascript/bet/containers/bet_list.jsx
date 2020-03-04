@@ -16,6 +16,9 @@ class BetList extends Component {
 
   render () {
     let id = 0;
+    if (this.props.odds.length === 0) {
+      return <p>Les côtes ne sont pas là, mais elles arrivent très bientôt ! GL !</p>
+    }
     return(
       <div>
         {

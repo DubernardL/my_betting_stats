@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   get "/:fixture", to: "pages#fixture", as: 'fixture'
+
+  resources :bets, only: [:new, :create]
 end
