@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import BetList from '../containers/bet_list';
+import FormBet from '../containers/form_bet';
 
 const App = (props) => {
   return (
     <div>
-      <BetList fixtureFromParams={ props.match.params.fixture } />
+      <FormBet />
     </div>
   );
 };

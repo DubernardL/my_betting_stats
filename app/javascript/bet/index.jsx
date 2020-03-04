@@ -8,16 +8,16 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import { createHistory as history } from 'history';
 
 // reducers
-import oddsReducer from './reducers/odds_reducer';
+import leaguesReducer from './reducers/leagues_reducer';
 
 // containers
-import BetList from './containers/bet_list';
+import FormBet from './containers/form_bet';
 
 // components
 import App from './components/app';
 
 const reducers = combineReducers({
-  odds: oddsReducer
+  leagues: leaguesReducer
 });
 
 // middleware
@@ -28,9 +28,9 @@ ReactDOM.render(
   <Provider store={createStore(reducers, {}, middlewares)}>
     <Router history={history}>
       <Switch>
-        <Route path="/:fixture" component={App} />
+        <Route path="/bets/new" component={App} />
       </Switch>
     </Router>
   </Provider>,
-  document.getElementById('bet-list')
+  document.getElementById('new-bet')
 );

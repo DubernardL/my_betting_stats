@@ -1,23 +1,43 @@
-export function setOdds(fixture_id) {
-  const options = {
-    method: 'GET',
-    headers: {
-      'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
-      'X-RapidAPI-Key': '44316d2130msh21fed66e06e6a24p1dd597jsnf2e92ca6ac85'
-    }
+const OPTIONS = {
+  method: 'GET',
+  headers: {
+    'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
+    'X-RapidAPI-Key': '44316d2130msh21fed66e06e6a24p1dd597jsnf2e92ca6ac85'
   }
+};
 
-  return fetch(`https://api-football-v1.p.rapidapi.com/v2/odds/fixture/${fixture_id}`, options)
+export function setLeagues() {
+
+  const countries =
+    [
+      {
+        france: ["Ligue 1", "Ligue 2"]
+      },
+      {
+        england: ["Premier League"]
+      },
+      {
+        germany: ["Bundesliga 1"]
+      }
+    ];
+
+  let leagues = [];
+
+  countries.forEach((country) => {
+    fetch(`https://api-football-v1.p.rapidapi.com/v2/leagues/current/${Object.keys(country)[0]}`, OPTIONS)
     .then(response => response.json())
     .then((data) => {
-      const bookmakers = data.api.odds[0] ? data.api.odds[0].bookmakers : []
-      const bookmaker = bookmakers.filter((bookmaker) => { return bookmaker.bookmaker_id === 16 })
-      const odds = bookmaker[0] ? bookmaker[0].bets : []
-      // Array de odds
-      return {
-        type: 'SET_ODDS',
-        payload: odds
-      };
-    }
-  );
+      Object.values(country)[0].forEach((league) => {
+        data.api.leagues.filter((league_api) => {
+          if(league_api.name === league) {
+            leagues.push(league_api);
+          }
+        });
+      });
+    });
+  });
+  return {
+    type: 'SET_LEAGUES',
+    payload: leagues
+  };
 }
