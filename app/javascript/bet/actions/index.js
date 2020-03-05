@@ -6,7 +6,7 @@ const OPTIONS = {
   }
 };
 
-export function setLeagues() {
+export async function setLeagues() {
 
   const countries =
     [
@@ -41,3 +41,4 @@ export function setLeagues() {
     payload: leagues
   };
 }
+

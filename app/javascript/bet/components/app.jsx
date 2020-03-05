@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import FormBet from '../containers/form_bet';
+import LeaguesLabel from '../containers/leagues_label';
 
 const App = (props) => {
   return (
     <div>
-      <FormBet />
+      <LeaguesLabel />
     </div>
   );
 };

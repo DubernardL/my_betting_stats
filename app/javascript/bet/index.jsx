@@ -9,10 +9,8 @@ import { createHistory as history } from 'history';
 
 // reducers
 import leaguesReducer from './reducers/leagues_reducer';
-
 // containers
-import FormBet from './containers/form_bet';
-
+import LeaguesLabel from './containers/leagues_label';
 // components
 import App from './components/app';
 

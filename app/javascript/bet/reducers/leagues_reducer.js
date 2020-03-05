@@ -1,12 +1,12 @@
 export default function(state, action) {
+  console.log(state);
   if (state === undefined) {
     return [];
   }
 
-  switch (action.type) {
-    case 'SET_LEAGUES':
-      return action.payload;
-    default:
-      return state;
+  if (action.type === 'SET_LEAGUES') {
+    return action.payload;
+  } else {
+    return state;
   }
 }
