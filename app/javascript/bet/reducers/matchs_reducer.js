@@ -3,7 +3,7 @@ export default function(state, action) {
     return [];
   }
 
-  if (action.type === 'SET_LEAGUES') {
+  if (action.type === 'SET_MATCHS') {
     return action.payload;
   } else {
     return state;
