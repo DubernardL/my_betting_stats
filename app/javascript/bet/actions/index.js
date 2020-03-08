@@ -2,7 +2,7 @@ const OPTIONS = {
   method: 'GET',
   headers: {
     'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
-    'X-RapidAPI-Key': '44316d2130msh21fed66e06e6a24p1dd597jsnf2e92ca6ac85'
+    'X-RapidAPI-Key': process.env.FOOT_KEY
   }
 };
 
