@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import LeaguesLabel from '../containers/leagues_label';
+import Bet from '../containers/bet';
 
 const App = (props) => {
   return (
     <div>
-      <LeaguesLabel />
+      <Bet />
     </div>
   );
 };

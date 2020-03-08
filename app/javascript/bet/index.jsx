@@ -10,14 +10,14 @@ import { createHistory as history } from 'history';
 // reducers
 import leaguesReducer from './reducers/leagues_reducer';
 import matchsReducer from './reducers/matchs_reducer';
-// containers
-import LeaguesLabel from './containers/leagues_label';
+import betsNameReducer from './reducers/bets_name_reducer';
 // components
 import App from './components/app';
 
 const reducers = combineReducers({
   leagues: leaguesReducer,
-  matchs: matchsReducer
+  matchs: matchsReducer,
+  bets_name: betsNameReducer
 });
 
 // Middleware

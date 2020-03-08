@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>Index des bets</h1>
+  <% @bets.each do |bet| %>
+    <div class="card-div d-flex">
+      <div class="card" style="width: 18rem;">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><%= bet.league %></li>
+          <li class="list-group-item"><%= bet.match %></li>
+          <li class="list-group-item"><%= bet.odd %> x <%= bet.bet_amount %></li>
+        </ul>
+      </div>
+      <div class="trash-div">
+        <%= button_to bet_path(bet.id), method: :delete, class:"trash" do %>
+            <i class='fas fa-trash-alt'></i>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

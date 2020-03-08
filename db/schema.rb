@@ -18,10 +18,10 @@ ActiveRecord::Schema.define(version: 2020_03_04_132918) do
   create_table "bets", force: :cascade do |t|
     t.string "sport"
     t.string "league"
-    t.string "match"
+    t.integer "match"
     t.string "name"
-    t.string "odd"
-    t.string "bet_amount"
+    t.float "odd"
+    t.float "bet_amount"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

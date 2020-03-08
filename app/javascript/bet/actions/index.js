@@ -56,8 +56,7 @@ export async function setMatchs(league_id) {
   const data = await response.json();
 
   for (const apiMatch of data.api.fixtures) {
-    const match = `${apiMatch.homeTeam.team_name} VS ${apiMatch.awayTeam.team_name}`;
-    allMatchs.push(match)
+    allMatchs.push(apiMatch)
   }
 
   return {
@@ -66,40 +65,27 @@ export async function setMatchs(league_id) {
   }
 }
 
+export async function setBetsName(match_id) {
 
+  let allBet = []
 
-// export function setLeagues() {
+  const response = await fetch(`https://api-football-v1.p.rapidapi.com/v2/odds/fixture/${match_id}`,
+    OPTIONS
+  )
 
-//   const countries =
-//     [
-//       {
-//         france: ["Ligue 1", "Ligue 2"]
-//       },
-//       {
-//         england: ["Premier League"]
-//       },
-//       {
-//         germany: ["Bundesliga 1"]
-//       }
-//     ];
+  const data = await response.json();
+  const unibet = data.api.odds[0].bookmakers.filter((bookmaker) => {
+    if((_.invert(bookmaker))["Unibet"]) {
+      return bookmaker;
+    }
+  });
 
-//   let leagues = [];
+  for (const apiBet of unibet[0].bets ) {
+    allBet.push(apiBet.label_name)
+  }
 
-//   countries.forEach((country) => {
-//     fetch(`https://api-football-v1.p.rapidapi.com/v2/leagues/current/${Object.keys(country)[0]}`, OPTIONS)
-//     .then(response => response.json())
-//     .then((data) => {
-//       Object.values(country)[0].forEach((league) => {
-//         data.api.leagues.filter((league_api) => {
-//           if(league_api.name === league) {
-//             leagues.push(league_api);
-//           }
-//         });
-//       });
-//     });
-//   });
-//   return {
-//     type: 'SET_LEAGUES',
-//     payload: leagues
-//   };
-// }
+  return {
+    type: "SET_BETS_NAME",
+    payload: allBet
+  }
+}

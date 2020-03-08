@@ -3,6 +3,10 @@
   <%= simple_form_for @bet do |f| %>
     <div id="new-bet">
     </div>
-    <%= f.button :submit, "bet" %>
+      <%= f.input :odd, error: 'You need a odd' %>
+      <%= f.input :bet_amount %>
+    <div class="btn-new-bet">
+      <%= f.button :submit, "bet", class:'btn btn-success' %>
+    </div>
   <% end %>
 </div>
