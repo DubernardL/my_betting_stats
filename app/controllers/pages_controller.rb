@@ -5,9 +5,8 @@ require 'json'
 
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:home]
-  include Fetch
-  before_action :set_matchs
 
   def home
+    @bets = Bet.where(user: current_user)
   end
 end
