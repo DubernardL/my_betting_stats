@@ -28,7 +28,7 @@ ReactDOM.render(
   <Provider store={createStore(reducers, {}, middlewares)}>
     <Router history={history}>
       <Switch>
-        <Route path="/bets/new" component={App} />
+        <Route path="/bets/new" exact component={App} />
       </Switch>
     </Router>
   </Provider>,

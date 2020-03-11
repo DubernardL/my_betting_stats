@@ -15,7 +15,7 @@ class BetsController < ApplicationController
     @bet.state = "win"
     if @bet.save
       respond_to do |format|
-        format.html { redirect_to bets_path, alert: "Result registred"}
+        format.html { redirect_to pending_bets_path, alert: "Result registred"}
         format.js
       end
     end
@@ -26,7 +26,7 @@ class BetsController < ApplicationController
     @bet.state = "lose"
     if @bet.save
       respond_to do |format|
-        format.html { redirect_to bets_path, alert: "Result registred"}
+        format.html { redirect_to pending_bets_path, alert: "Result registred"}
         format.js
       end
     end
