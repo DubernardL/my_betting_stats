@@ -8,10 +8,8 @@
 }
 
 .validate-form {
-  display: flex;
   justify-content: space-between;
 }
-
 
 //  Index bets
 
@@ -22,9 +20,23 @@
 .trash {
   background-color: transparent;
   border: none;
+  color: #DC3545;
 }
 
 .trash-div {
   display: flex;
   align-items: center;
+}
+
+.button-space {
+  justify-content: space-around;
+}
+
+.fa-times {
+  font-size: 25px;
+  margin: 0 5px;
+}
+
+.fa-check {
+  font-size: 25px;
 }

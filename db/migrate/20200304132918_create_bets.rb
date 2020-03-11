@@ -5,6 +5,7 @@ class CreateBets < ActiveRecord::Migration[5.2]
       t.string :league
       t.string :match
       t.string :name
+      t.string :state, default: "pending"
       t.float :odd
       t.float :bet_amount
       t.references :user, foreign_key: true

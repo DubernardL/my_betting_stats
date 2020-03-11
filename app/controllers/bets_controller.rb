@@ -2,7 +2,34 @@ class BetsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @bets = Bet.where(user: current_user)
+    user_bets = Bet.where(user: current_user)
+    @bets = user_bets.where.not(state: "pending")
+  end
+
+  def pendingBets
+    @bets = Bet.where(user: current_user, state:"pending")
+  end
+
+  def win
+    @bet = Bet.find(params[:id])
+    @bet.state = "win"
+    if @bet.save
+      respond_to do |format|
+        format.html { redirect_to bets_path, alert: "Result registred"}
+        format.js
+      end
+    end
+  end
+
+  def lose
+    @bet = Bet.find(params[:id])
+    @bet.state = "lose"
+    if @bet.save
+      respond_to do |format|
+        format.html { redirect_to bets_path, alert: "Result registred"}
+        format.js
+      end
+    end
   end
 
   def new
@@ -13,9 +40,15 @@ class BetsController < ApplicationController
     @bet = Bet.new(bet_params)
     @bet.user = current_user
     if @bet.save
-     redirect_to new_bet_path
+     respond_to do |format|
+        format.html { redirect_to new_bet_path, alert: "Bet added !"}
+        format.js
+      end
     else
-      render :new
+      respond_to do |format|
+        format.html { redirect_to new_bet_path, alert: "Try replacing points with commas pls"}
+        format.js
+      end
     end
   end
 
@@ -23,7 +56,10 @@ class BetsController < ApplicationController
     @bets = Bet.where(user: current_user)
     @bet = @bets.find(params[:id])
     @bet.destroy
-    redirect_to bets_path
+    respond_to do |format|
+      format.html { redirect_to bets_path, alert: "Bet deleted"}
+      format.js
+    end
   end
 
   private

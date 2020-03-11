@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2020_03_04_132918) do
     t.string "league"
     t.string "match"
     t.string "name"
+    t.string "state", default: "pending"
     t.float "odd"
     t.float "bet_amount"
     t.bigint "user_id"
