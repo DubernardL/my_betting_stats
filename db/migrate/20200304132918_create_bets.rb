@@ -3,7 +3,7 @@ class CreateBets < ActiveRecord::Migration[5.2]
     create_table :bets do |t|
       t.string :sport
       t.string :league
-      t.integer :match
+      t.string :match
       t.string :name
       t.float :odd
       t.float :bet_amount

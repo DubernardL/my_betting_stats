@@ -4,9 +4,10 @@
     <div class="card-div d-flex">
       <div class="card" style="width: 18rem;">
         <ul class="list-group list-group-flush">
-          <li class="list-group-item"><%= bet.league %></li>
-          <li class="list-group-item"><%= bet.match %></li>
-          <li class="list-group-item"><%= bet.odd %> x <%= bet.bet_amount %></li>
+          <li class="list-group-item"><%= JSON.parse(bet.league)["name"] %></li>
+          <li class="list-group-item"><%= JSON.parse(bet.match)["homeTeam"]["team_name"] %> VS <%= JSON.parse(bet.match)["awayTeam"]["team_name"] %></li>
+          <li class="list-group-item">Odd : <%= bet.odd %></li>
+          <li class="list-group-item">Bet amount : <%= bet.bet_amount %> €</li>
         </ul>
       </div>
       <div class="trash-div">

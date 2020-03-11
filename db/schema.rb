@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2020_03_04_132918) do
   create_table "bets", force: :cascade do |t|
     t.string "sport"
     t.string "league"
-    t.integer "match"
+    t.string "match"
     t.string "name"
     t.float "odd"
     t.float "bet_amount"

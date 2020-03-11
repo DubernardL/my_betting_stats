@@ -10,8 +10,6 @@ class Bet extends Component {
 
   componentDidMount() {
     this.props.setLeagues();
-    this.props.setMatchs(525);
-    this.props.setBetsName(157691);
   }
 
   changeLeague = (event) => {
@@ -24,7 +22,8 @@ class Bet extends Component {
   changeMatch = (event) => {
     const class_selected = document.getElementById('list-match').options;
     const match_selected = class_selected[class_selected.selectedIndex];
-    const match_id = match_selected.value;
+    console.log(match_selected);
+    const match_id = match_selected.attributes.fixture_id.value;
     this.props.setBetsName(match_id);
   }
 
@@ -34,10 +33,11 @@ class Bet extends Component {
       <div>
         <div>
           <select className="custom-select" id="list-league" onChange={this.changeLeague} name="bet[league]" required>
+            <option value="">-- Choose your league --</option>
             {
               this.props.leagues.map((league) => {
                 return(
-                  <option value={league.name} league_id={league.league_id} key={id += 1}>{league.name}</option>
+                  <option value={JSON.stringify(league)} league_id={league.league_id} key={id += 1}>{league.name}</option>
                 );
               })
             }
@@ -45,11 +45,12 @@ class Bet extends Component {
         </div>
 
         <div>
-          <select className="custom-select" id="list-match" name="bet[match]" onChange={this.changeMatch} required>
+          <select className="custom-select" id="list-match" onChange={this.changeMatch} name="bet[match]" required>
+            <option value="">-- Choose your match --</option>
             {
               this.props.matchs.map((match) => {
                 return(
-                  <option value={match.fixture_id} key={id += 1}>{match.homeTeam.team_name} VS {match.awayTeam.team_name}</option>
+                  <option value={JSON.stringify(match)} fixture_id={match.fixture_id} key={id += 1}>{match.homeTeam.team_name} VS {match.awayTeam.team_name}</option>
                 );
               })
             }
@@ -58,6 +59,7 @@ class Bet extends Component {
 
         <div>
           <select className="custom-select" name="bet[name]" required>
+            <option value="">-- Choose your bet --</option>
             {
               this.props.bets_name.map((bet_name) => {
                 return(
