@@ -3,11 +3,11 @@ class BetsController < ApplicationController
 
   def index
     user_bets = Bet.where(user: current_user)
-    @bets = user_bets.where.not(state: "pending")
+    @bets = user_bets.where.not(state: "pending").reverse_order
   end
 
   def pendingBets
-    @bets = Bet.where(user: current_user, state:"pending")
+    @bets = Bet.where(user: current_user, state:"pending").reverse_order
   end
 
   def win
@@ -15,7 +15,7 @@ class BetsController < ApplicationController
     @bet.state = "win"
     if @bet.save
       respond_to do |format|
-        format.html { redirect_to pending_bets_path, alert: "Result registred"}
+        format.html { redirect_to bets_path, alert: "Result registred"}
         format.js
       end
     end
@@ -26,7 +26,7 @@ class BetsController < ApplicationController
     @bet.state = "lose"
     if @bet.save
       respond_to do |format|
-        format.html { redirect_to pending_bets_path, alert: "Result registred"}
+        format.html { redirect_to bets_path, alert: "Result registred"}
         format.js
       end
     end

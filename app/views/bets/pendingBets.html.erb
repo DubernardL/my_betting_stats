@@ -33,10 +33,10 @@
           <li class="list-group-item">Bet amount : <%= bet.bet_amount %> €</li>
           <li class="list-group-item">State : <%= bet.state %></li>
           <li class="list-group-item d-flex button-space">
-            <%= button_to lose_path(bet.id), method: :put, class:"btn btn-danger" do %>
+            <%= link_to lose_path(bet.id), method: :put, class:"btn btn-danger" do %>
               <i class="fas fa-times"></i>
             <% end %>
-            <%= button_to win_path(bet.id), method: :put, class:"btn btn-success" do %>
+            <%= link_to win_path(bet.id), method: :patch, class:"btn btn-success" do %>
               <i class="fas fa-check"></i>
             <% end %>
           </li>

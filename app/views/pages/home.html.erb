@@ -1,6 +1,22 @@
 <div class="container">
   <h1>Stats</h1>
 
+  <h2>All bets</h2>
+  <p><%= @allbets %></p>
 
+  <h2>Pending bets</h2>
+  <p><%= @pending_bets %></p>
+
+  <h2>Amount pending bets</h2>
+  <p><%= @pending_bets_amount %> €</p>
+
+  <h2>Finished bets</h2>
+  <p><%= @finished_bets %></p>
+
+  <h2>Total bets</h2>
+  <p><%= @total_bets.round(2) %> €</p>
+
+  <h2>Net profit / lose</h2>
+  <p><%= @profit.round(2) %> €</p>
 
 </div>
