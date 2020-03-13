@@ -2,20 +2,25 @@ google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(graphPoint);
 
 function graphPoint() {
-  var data = google.visualization.arrayToDataTable(odd_graph);
+  const data = google.visualization.arrayToDataTable(odd_graph);
 
-  console.log(odd_graph);
-
-  var options = {
-    title: 'Odd vs Amount',
-    hAxis: {title: 'odd', minValue: 0, maxValue: 15},
-    vAxis: {title: 'amount', minValue: 0, maxValue: 15},
-    legend: 'none'
+  let options = {
+    title: 'ODD vs. AMOUNT',
+    hAxis: {title: 'odd'},
+    vAxis: {title: 'amount'},
+    legend: 'none',
+    colors: ['#DC3912', '#109618'],
+    dataOpacity: 0.5,
+    series: {
+      0: { pointShape: 'diamond' },
+      1: { pointShape: 'circle' }
+    }
   };
 
-  var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
+  const chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
 
   chart.draw(data, options);
 }
+
 
 export { graphPoint };

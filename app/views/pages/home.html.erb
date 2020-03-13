@@ -130,13 +130,13 @@
 <script>
   const result_bet_graph = [['result', 'percentage'], ["Win", <%= @percentage_win %>], ["lose", <%= @percentage_lose %>]]
 
-  const odd_graph = [
-    ['odd', 'amount', "win"],
+  let odd_graph = [
+    ['amount', 'odd', 'win/lose'],
     <% @bets.each do |bet| %>
       <% if bet.state == "win" %>
-        [<%= bet.odd %>, <%= bet.bet_amount %>, 1],
-      <% else %>
-        [<%= bet.odd %>, <%= bet.bet_amount %>, 0],
+        [<%= bet.odd %>, null, <%= bet.bet_amount %>],
+      <% elsif bet.state == "lose" %>
+        [<%= bet.odd %>, <%= bet.bet_amount %>, null],
       <% end %>
     <% end %>
     ]
