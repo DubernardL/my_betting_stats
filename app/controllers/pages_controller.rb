@@ -35,7 +35,7 @@ class PagesController < ApplicationController
     end
 
     # Yield
-    @yield = (@profit / @total_bets) * 100
+    @yield = @total_bets === 0 ? @yield = 0 : (@profit / @total_bets) * 100
 
     # Wining bets
     @wining_bets = @bets.where(state: "win")

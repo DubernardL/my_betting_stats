@@ -5,6 +5,8 @@
 
   <div class="section general-stats">
 
+    <div id="line_chart_div" class="graph"></div>
+
     <div class="stat">
       <h3>All bets</h3>
       <p><%= @bets.count %></p>
@@ -36,7 +38,7 @@
     </div>
 
     <div class="stat">
-      <h3>Yield</h3>
+      <h3>Return on investment</h3>
       <p><%= @yield.round(2) %> %</p>
     </div>
 
@@ -128,7 +130,7 @@
 
 <!-- graphics -->
 <script>
-  const result_bet_graph = [['result', 'percentage'], ["Win", <%= @percentage_win %>], ["lose", <%= @percentage_lose %>]]
+  const result_bet_graph = [['result', 'percentage'], ["Win", <%= @percentage_win %>], ["lose", <%= @percentage_lose %>]];
 
   let odd_graph = [
     ['amount', 'odd', 'win/lose'],
@@ -139,5 +141,26 @@
         [<%= bet.odd %>, <%= bet.bet_amount %>, null],
       <% end %>
     <% end %>
-    ]
+  ];
+
+  <%= @profit_graph = 0 %>
+  <%= @amount_all_bets = 0 %>
+  <%= @count = 0 %>
+
+  let line_graph = [
+    <% @bets.each do |bet| %>
+      <% if bet.state == "win" %>
+        <% @profit_graph += (bet.bet_amount * bet.odd) - bet.bet_amount %>
+      <% else %>
+        <% @profit_graph -= bet.bet_amount %>
+      <% end%>
+      <% @amount_all_bets += bet.bet_amount %>
+      <% @count += 1 %>
+
+      [<%= @count %>, <%= (@profit_graph / @amount_all_bets) * 100 %>],
+
+    <% end %>
+  ];
+
+
 </script>

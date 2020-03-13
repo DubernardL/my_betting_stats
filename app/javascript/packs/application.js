@@ -10,4 +10,5 @@ import { alert_undisplay } from "./flashes";
 // Graph
 import { drawChart } from "../components/circle_graph";
 import { graphPoint } from "../components/points_graph";
+import { drawLogScales } from "../components/line_graph";
 
