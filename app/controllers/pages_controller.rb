@@ -34,6 +34,9 @@ class PagesController < ApplicationController
       end
     end
 
+    # Yield
+    @yield = (@profit / @total_bets) * 100
+
     # Wining bets
     @wining_bets = @bets.where(state: "win")
 
@@ -42,7 +45,7 @@ class PagesController < ApplicationController
     @wining_bets.each { |bet| @win_bets_amount += (bet.bet_amount * bet.odd) - bet.bet_amount }
 
     # Percentage winning
-    @percentage_win = (@wining_bets.count * 100) / @finished_bets.count
+    @finished_bets.count == 0 ? @percentage_win = 0 : @percentage_win = (@wining_bets.count * 100) / @finished_bets.count
 
     # Losing bets
     @losing_bets = @bets.where(state: "lose")
@@ -52,39 +55,39 @@ class PagesController < ApplicationController
     @losing_bets.each { |bet| @lose_bets_amount += bet.bet_amount }
 
     # Percentage losing
-    @percentage_lose = (@losing_bets.count * 100) / @finished_bets.count
+    @finished_bets.count == 0 ? @percentage_lose = 0 : @percentage_lose = (@losing_bets.count * 100) / @finished_bets.count
 
 
     # Medium Odd
     odd_arr = []
     @bets.each { |bet| odd_arr << bet.odd }
-    @medium_odd = odd_arr.inject(0){|sum,x| sum + x } / odd_arr.count
+    odd_arr.count == 0 ? @medium_odd = 0 :@medium_odd = odd_arr.inject(0){|sum,x| sum + x } / odd_arr.count
 
     # Medium odd Win
     odd_arr_win = []
     @wining_bets.each { |bet| odd_arr_win << bet.odd }
-    @medium_odd_win = odd_arr_win.inject(0){|sum,x| sum + x } / odd_arr_win.count
+    odd_arr_win.count == 0 ? @medium_odd_win = 0 : @medium_odd_win = odd_arr_win.inject(0){|sum,x| sum + x } / odd_arr_win.count
 
     # Medium odd lose
     odd_arr_lose = []
     @losing_bets.each { |bet| odd_arr_lose << bet.odd }
-    @medium_odd_lose = odd_arr_lose.inject(0){|sum,x| sum + x } / odd_arr_lose.count
+    odd_arr_lose.count == 0 ? @medium_odd_lose = 0 : @medium_odd_lose = odd_arr_lose.inject(0){|sum,x| sum + x } / odd_arr_lose.count
 
 
     # Medium bet amount
     amount_arr = []
     @bets.each { |bet| amount_arr << bet.bet_amount }
-    @medium_amount = amount_arr.inject(0){|sum,x| sum + x } / amount_arr.count
+    amount_arr.count == 0 ? @medium_amount = 0 : @medium_amount = amount_arr.inject(0){|sum,x| sum + x } / amount_arr.count
 
     # Medium bet win amount
     win_amount_arr = []
     @wining_bets.each { |bet| win_amount_arr << bet.bet_amount }
-    @medium_win_amount = win_amount_arr.inject(0){|sum,x| sum + x } / win_amount_arr.count
+    win_amount_arr.count == 0 ? @medium_win_amount = 0 : @medium_win_amount = win_amount_arr.inject(0){|sum,x| sum + x } / win_amount_arr.count
 
     # Medium bet lose amount
     lose_amount_arr = []
     @losing_bets.each { |bet| lose_amount_arr << bet.bet_amount }
-    @medium_lose_amount = lose_amount_arr.inject(0){|sum,x| sum + x } / lose_amount_arr.count
+    lose_amount_arr.count == 0 ? @medium_lose_amount = 0 : @medium_lose_amount = lose_amount_arr.inject(0){|sum,x| sum + x } / lose_amount_arr.count
 
   end
 end

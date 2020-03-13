@@ -1,58 +1,143 @@
 <div class="container">
   <h1>My Stats</h1>
 
-  <h2>All bets</h2>
-  <p><%= @bets.count %></p>
+  <h2>General stats</h2>
 
-  <h2>Pending bets</h2>
-  <p><%= @pending_bets.count %></p>
+  <div class="section general-stats">
 
-  <h2>Amount pending bets</h2>
-  <p><%= @pending_bets_amount %> €</p>
+    <div class="stat">
+      <h3>All bets</h3>
+      <p><%= @bets.count %></p>
+    </div>
 
-  <h2>Finished bets</h2>
-  <p><%= @finished_bets.count %></p>
+    <div class="stat">
+      <h3>Total bets</h3>
+      <p><%= @total_bets.round(2) %> €</p>
+    </div>
 
-  <h2>Total bets</h2>
-  <p><%= @total_bets.round(2) %> €</p>
+    <div class="stat">
+      <h3>Pending bets</h3>
+      <p><%= @pending_bets.count %></p>
+    </div>
 
-  <h2>Net profit / lose</h2>
-  <p><%= @profit.round(2) %> €</p>
+    <div class="stat">
+      <h3>Amount pending bets</h3>
+      <p><%= @pending_bets_amount %> €</p>
+    </div>
 
-  <h2>Wining bets</h2>
-  <p><%= @wining_bets.count %></p>
+    <div class="stat">
+      <h3>Finished bets</h3>
+      <p><%= @finished_bets.count %></p>
+    </div>
 
-  <h2>Percentage win</h2>
-  <p><%= @percentage_win %> %</p>
+    <div class="stat">
+      <h3>Net profit</h3>
+      <p><%= @profit.round(2) %> €</p>
+    </div>
 
-  <h2>Net amount wining bets</h2>
-  <p><%= @win_bets_amount %> €</p>
+    <div class="stat">
+      <h3>Yield</h3>
+      <p><%= @yield.round(2) %> %</p>
+    </div>
 
-  <h2>Losing bets</h2>
-  <p><%= @losing_bets.count %></p>
+  </div>
 
-  <h2>Amount losing bets</h2>
-  <p><%= @lose_bets_amount %> €</p>
+  <h2>Result bet stats</h2>
 
-  <h2>Percentage lose</h2>
-  <p><%= @percentage_lose %> %</p>
+  <div class="section result-bet">
 
-  <h2>Medium odd</h2>
-  <p><%= @medium_odd.round(2) %></p>
+    <div id="piechart_3d" class="graph"></div>
 
-  <h2>Medium odd win</h2>
-  <p><%= @medium_odd_win.round(2) %></p>
+    <div class="stat">
+      <h3>Wining bets</h3>
+      <p><%= @wining_bets.count %></p>
+    </div>
 
-  <h2>Medium odd lose</h2>
-  <p><%= @medium_odd_lose.round(2) %></p>
+    <div class="stat">
+      <h3>Percentage win</h3>
+      <p><%= @percentage_win %> %</p>
+    </div>
 
-  <h2>Medium bet amount</h2>
-  <p><%= @medium_amount.round(2) %> €</p>
+    <div class="stat">
+      <h3>Losing bets</h3>
+      <p><%= @losing_bets.count %></p>
+    </div>
 
-  <h2>Medium wining bet amount</h2>
-  <p><%= @medium_win_amount.round(2) %> €</p>
+    <div class="stat">
+      <h3>Percentage lose</h3>
+      <p><%= @percentage_lose %> %</p>
+    </div>
 
-  <h2>Medium losing bet amount</h2>
-  <p><%= @medium_lose_amount.round(2) %> €</p>
+    <div class="stat">
+      <h3>Amount losing</h3>
+      <p><%= @lose_bets_amount %> €</p>
+    </div>
+
+    <div class="stat">
+      <h3>Net amount wining</h3>
+      <p><%= @win_bets_amount %> €</p>
+    </div>
+
+  </div>
+
+  <h2>Odd bet stats</h2>
+
+  <div class="section odd-stats">
+
+    <div id="chart_div" class="graph"></div>
+
+    <div class="stat">
+      <h3>Medium odd</h3>
+      <p><%= @medium_odd.round(2) %></p>
+    </div>
+
+    <div class="stat">
+      <h3>Medium odd win</h3>
+      <p><%= @medium_odd_win.round(2) %></p>
+    </div>
+
+    <div class="stat">
+      <h3>Medium odd lose</h3>
+      <p><%= @medium_odd_lose.round(2) %></p>
+    </div>
+
+  </div>
+
+  <h2>Amount bet stats</h2>
+
+  <div class="section amount-stats">
+
+    <div class="stat">
+      <h3>Medium bet amount</h3>
+      <p><%= @medium_amount.round(2) %> €</p>
+    </div>
+
+    <div class="stat">
+      <h3>Medium wining bet amount</h3>
+      <p><%= @medium_win_amount.round(2) %> €</p>
+    </div>
+
+    <div class="stat">
+      <h3>Medium losing bet amount</h3>
+      <p><%= @medium_lose_amount.round(2) %> €</p>
+    </div>
+
+  </div>
 
 </div>
+
+
+<script>
+  const result_bet_graph = [['result', 'percentage'], ["Win", <%= @percentage_win %>], ["lose", <%= @percentage_lose %>]]
+
+  const odd_graph = [
+    ['odd', 'amount', "win"],
+    <% @bets.each do |bet| %>
+      <% if bet.state == "win" %>
+        [<%= bet.odd %>, <%= bet.bet_amount %>, 1],
+      <% else %>
+        [<%= bet.odd %>, <%= bet.bet_amount %>, 0],
+      <% end %>
+    <% end %>
+    ]
+</script>
