@@ -5,7 +5,9 @@
 
   <div class="section general-stats">
 
-    <div id="line_chart_div" class="graph"></div>
+    <% if @finished_bets.length != 0 %>
+      <div id="line_chart_div" class="graph"></div>
+    <% end %>
 
     <div class="stat">
       <h3>All bets</h3>
@@ -32,23 +34,32 @@
       <p><%= @finished_bets.count %></p>
     </div>
 
-    <div class="stat">
+    <% if @profit >= 0 %>
+      <div class="stat positive">
+    <% else %>
+      <div class="stat negative">
+    <% end %>
       <h3>Net profit</h3>
       <p><%= @profit.round(2) %> €</p>
     </div>
 
-    <div class="stat">
-      <h3>Return on investment</h3>
-      <p><%= @yield.round(2) %> %</p>
-    </div>
-
+    <% if @yield > 0 %>
+      <div class="stat positive">
+    <% else %>
+      <div class="stat negative">
+    <% end %>
+        <h3>Return on investment</h3>
+        <p><%= @yield.round(2) %> %</p>
+      </div>
   </div>
 
   <h2>Result bet stats</h2>
 
   <div class="section result-bet">
 
-    <div id="piechart_3d" class="graph"></div>
+    <% if @finished_bets.length != 0 %>
+      <div id="piechart_3d" class="graph"></div>
+    <% end %>
 
     <div class="stat">
       <h3>Wining bets</h3>
@@ -86,7 +97,9 @@
 
   <div class="section odd-stats">
 
-    <div id="chart_div" class="graph"></div>
+    <% if @finished_bets.length != 0 %>
+      <div id="chart_div" class="graph"></div>
+    <% end %>
 
     <div class="stat">
       <h3>Medium odd</h3>
@@ -164,3 +177,6 @@
 
 
 </script>
+
+<%= javascript_pack_tag 'graphs' %>
+

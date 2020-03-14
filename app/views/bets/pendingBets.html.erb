@@ -27,11 +27,37 @@
     <div class="card-div d-flex">
       <div class="card" style="width: 18rem;">
         <ul class="list-group list-group-flush">
-          <li class="list-group-item"><%= JSON.parse(bet.league)["name"] %></li>
-          <li class="list-group-item"><%= JSON.parse(bet.match)["homeTeam"]["team_name"] %> VS <%= JSON.parse(bet.match)["awayTeam"]["team_name"] %></li>
-          <li class="list-group-item">Odd : <%= bet.odd %></li>
-          <li class="list-group-item">Bet amount : <%= bet.bet_amount %> €</li>
-          <li class="list-group-item">State : <%= bet.state %></li>
+          <li class="list-group-item img-li">
+            <div>
+              <%= JSON.parse(bet.league)["name"] %>
+            </div>
+            <div>
+              <img src="<%= JSON.parse(bet.league)["flag"] %>" alt="" class="image-card">
+              <img src="<%= JSON.parse(bet.league)["logo"] %>" alt="" class="image-card">
+            </div>
+          </li>
+
+          <li class="list-group-item match-li">
+            <div >
+              <img src="<%= JSON.parse(bet.match)["homeTeam"]["logo"] %>" alt="" class="logo-team mr-1">  VS <img src="<%= JSON.parse(bet.match)["awayTeam"]["logo"] %>" alt="" class="logo-team">
+            </div>
+          </li>
+
+          <li class="list-group-item bet-li">
+            <div>
+              <p>Odd</p>
+              <p><%= bet.odd %></p>
+            </div>
+            <div>
+              <p>Bet</p>
+              <p><%= bet.bet_amount %> €</p>
+            </div>
+            <div>
+              <p>Earnings</p>
+              <p><%= (bet.odd * bet.bet_amount).round(2) %> €</p>
+            </div>
+          </li>
+          <li class="list-group-item">State : <span class="badge badge-warning"><%= bet.state %></span></li>
           <li class="list-group-item d-flex button-space">
             <%= link_to lose_path(bet.id), method: :put, class:"btn btn-danger" do %>
               <i class="fas fa-times"></i>
@@ -52,5 +78,3 @@
     </div>
   <% end %>
 </div>
-
-

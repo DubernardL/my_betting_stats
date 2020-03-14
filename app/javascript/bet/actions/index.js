@@ -75,7 +75,7 @@ export async function setBetsName(match_id) {
 
   const data = await response.json();
   const unibet = data.api.odds[0].bookmakers.filter((bookmaker) => {
-    if((_.invert(bookmaker))["Unibet"]) {
+    if((_.invert(bookmaker))["Unibet"] || (_.invert(bookmaker))["Interwetten"]) {
       return bookmaker;
     }
   });

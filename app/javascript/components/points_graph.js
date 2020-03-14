@@ -12,8 +12,8 @@ function graphPoint() {
     colors: ['#DC3912', '#109618'],
     dataOpacity: 0.5,
     series: {
-      0: { pointShape: 'diamond' },
-      1: { pointShape: 'circle' }
+      0: { pointShape: 'circle' },
+      1: { pointShape: 'diamond' }
     }
   };
 
