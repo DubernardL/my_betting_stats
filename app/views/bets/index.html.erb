@@ -28,21 +28,27 @@
     <div class="card-div d-flex">
       <div class="card" style="width: 18rem;">
         <ul class="list-group list-group-flush">
-          <li class="list-group-item img-li">
-            <div>
-              <%= JSON.parse(bet.league)["name"] %>
-            </div>
-            <div>
-              <img src="<%= JSON.parse(bet.league)["flag"] %>" alt="" class="image-card">
-              <img src="<%= JSON.parse(bet.league)["logo"] %>" alt="" class="image-card">
-            </div>
-          </li>
+          <% if bet.combine %>
+            <li class="list-group-item match-li">
+              <h3>Combined Bet</h3>
+            </li>
+          <% else %>
+            <li class="list-group-item img-li">
+              <div>
+                <%= JSON.parse(bet.league)["name"] %>
+              </div>
+              <div>
+                <img src="<%= JSON.parse(bet.league)["flag"] %>" alt="" class="image-card">
+                <img src="<%= JSON.parse(bet.league)["logo"] %>" alt="" class="image-card">
+              </div>
+            </li>
 
-          <li class="list-group-item match-li">
-            <div >
-              <img src="<%= JSON.parse(bet.match)["homeTeam"]["logo"] %>" alt="" class="logo-team mr-1">  VS <img src="<%= JSON.parse(bet.match)["awayTeam"]["logo"] %>" alt="" class="logo-team">
-            </div>
-          </li>
+            <li class="list-group-item match-li">
+              <div >
+                <img src="<%= JSON.parse(bet.match)["homeTeam"]["logo"] %>" alt="" class="logo-team mr-1">  VS <img src="<%= JSON.parse(bet.match)["awayTeam"]["logo"] %>" alt="" class="logo-team">
+              </div>
+            </li>
+          <% end %>
 
           <li class="list-group-item bet-li">
             <div>

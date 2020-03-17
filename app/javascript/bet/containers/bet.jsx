@@ -27,11 +27,27 @@ class Bet extends Component {
     this.props.setBetsName(match_id);
   }
 
+  handleCombine = (event) => {
+    const simple_bet = document.getElementById('simple-bet');
+    simple_bet.classList.toggle("hidden");
+    let value = document.getElementById('combine-switch').value
+    if (value == "on") {
+      document.getElementById('combine-switch').value = "combine";
+    } else {
+      document.getElementById('combine-switch').value = "on";
+    }
+  }
+
   render() {
     let id = 0;
     return(
       <div>
-        <div>
+        <div className="custom-control custom-switch">
+          <input type="checkbox" className="custom-control-input" id="combine-switch" onChange={this.handleCombine} name="bet[combine]"></input>
+          <label className="custom-control-label" htmlFor="combine-switch">Combined bets</label>
+        </div>
+
+        <div className="" id="simple-bet">
           <select className="custom-select" id="list-league" onChange={this.changeLeague} name="bet[league]" required>
             <option value="">-- Choose your league --</option>
             {
@@ -42,9 +58,7 @@ class Bet extends Component {
               })
             }
           </select>
-        </div>
 
-        <div>
           <select className="custom-select" id="list-match" onChange={this.changeMatch} name="bet[match]" required>
             <option value="">-- Choose your match --</option>
             {
@@ -55,9 +69,7 @@ class Bet extends Component {
               })
             }
           </select>
-        </div>
 
-        <div>
           <select className="custom-select" name="bet[name]" required>
             <option value="">-- Choose your bet --</option>
             {

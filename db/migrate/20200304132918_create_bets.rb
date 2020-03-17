@@ -8,6 +8,7 @@ class CreateBets < ActiveRecord::Migration[5.2]
       t.string :state, default: "pending"
       t.float :odd
       t.float :bet_amount
+      t.boolean :combine, default: "false"
       t.references :user, foreign_key: true
 
       t.timestamps

@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2020_03_04_132918) do
     t.string "state", default: "pending"
     t.float "odd"
     t.float "bet_amount"
+    t.boolean "combine", default: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

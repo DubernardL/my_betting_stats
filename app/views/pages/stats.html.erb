@@ -43,13 +43,13 @@
       <p><%= @profit.round(2) %> €</p>
     </div>
 
-    <% if @yield >= 0 %>
+    <% if @roi >= 0 %>
       <div class="stat positive">
     <% else %>
       <div class="stat negative">
     <% end %>
         <h3>Return on investment</h3>
-        <p><%= @yield.round(2) %> %</p>
+        <p><%= @roi.round(2) %> %</p>
       </div>
   </div>
 
@@ -157,7 +157,6 @@
   ];
 
   <%= @profit_graph = 0 %>
-  <%= @amount_all_bets = 0 %>
   <%= @count = 0 %>
 
   let line_graph = [
@@ -167,10 +166,9 @@
       <% else %>
         <% @profit_graph -= bet.bet_amount %>
       <% end%>
-      <% @amount_all_bets += bet.bet_amount %>
       <% @count += 1 %>
 
-      [<%= @count %>, <%= (@profit_graph / @amount_all_bets) * 100 %>],
+      [<%= @count %>, <%= @profit_graph %>],
 
     <% end %>
   ];

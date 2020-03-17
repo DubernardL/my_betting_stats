@@ -39,6 +39,7 @@ class BetsController < ApplicationController
   def create
     @bet = Bet.new(bet_params)
     @bet.user = current_user
+    params[:bet][:combine] == "combine" ? @bet.combine = true :  @bet.combine = false
     if @bet.save
      respond_to do |format|
         format.html { redirect_to new_bet_path, alert: "Bet added !"}

@@ -4,17 +4,18 @@ google.charts.setOnLoadCallback(drawLogScales);
 function drawLogScales() {
       var data = new google.visualization.DataTable();
       data.addColumn('number', 'id');
-      data.addColumn('number', 'yield');
+      data.addColumn('number', 'profit');
 
       data.addRows(line_graph);
 
       var options = {
-        title: 'Return on investment',
+        title: 'Profit over time',
         hAxis: {
-          title: 'Bets'
+          title: 'Bets',
         },
         vAxis: {
-          title: 'ROI'
+          title: 'Net profit',
+          minValue: 0,
         },
         backgroundColor: '#f1f8e9',
         legend: { position: 'none' }
