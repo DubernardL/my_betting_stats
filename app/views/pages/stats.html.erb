@@ -122,6 +122,8 @@
 
   <div class="section amount-stats">
 
+    <div id="columnchart_values" class="graph"></div>
+
     <div class="stat">
       <h3>Medium bet amount</h3>
       <p><%= @medium_amount.round(2) %> €</p>
@@ -195,6 +197,12 @@
 
     <% end %>
   ];
+
+  let column_graph = [
+    ["result", "amount", { role: "style" } ],
+    ["Win", <%= @medium_win_amount.round(2) %>, "#109618"],
+    ["Lose", <%= @medium_lose_amount.round(2) %>, "#DC3912"],
+  ]
 
 
 </script>
