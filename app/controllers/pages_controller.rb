@@ -92,5 +92,21 @@ class PagesController < ApplicationController
     @losing_bets.each { |bet| lose_amount_arr << bet.bet_amount }
     lose_amount_arr.count == 0 ? @medium_lose_amount = 0 : @medium_lose_amount = lose_amount_arr.inject(0){|sum,x| sum + x } / lose_amount_arr.count
 
+    # Type of bets
+    @types = {}
+    @types_win = {}
+    @finished_bets.each do |bet|
+      if @types.has_key?(bet.name)
+        @types[bet.name] += 1
+        if bet.state == "win"
+          @types_win[bet.name] += 1
+        end
+      else
+        @types[bet.name] = 1
+        if bet.state == "win"
+          @types_win[bet.name] = 1
+        end
+      end
+    end
   end
 end

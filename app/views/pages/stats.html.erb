@@ -139,6 +139,29 @@
 
   </div>
 
+  <h2>Type of bets</h2>
+
+  <div class="section amount-stats">
+
+    <% @types.each do |key, value| %>
+      <div class="stat">
+        <h3><%= key == "" ? "Combined bet" : key %></h3>
+        <p><%= value %></p>
+      </div>
+      <% if @types_win.has_key?(key) %>
+        <div class="stat">
+          <h3>Percentage win</h3>
+          <p><%= (@types_win[key] * 100) / value %> %</p>
+        </div>
+      <% else %>
+        <div class="stat">
+          <h3>Percentage win</h3>
+          <p>0 %</p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
 </div>
 
 <!-- graphics -->
