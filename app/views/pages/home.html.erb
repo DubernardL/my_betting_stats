@@ -1,4 +1,41 @@
 <div class="container">
-  <h1>Home page</h1>
+
+  <div class="home-section">
+    <div class="img-home">
+      <%= image_tag "football-icone.png", class: "img-home-content" %>
+    </div>
+    <div class="txt-home">
+      Enter your bets, and find your history in your profile with all the informations !
+    </div>
+  </div>
+
+  <div class="home-section">
+    <div class="img-home">
+      <%= image_tag "diagram_home.png", class: "img-home-content" %>
+    </div>
+    <div class="txt-home">
+      Find all the statistics of your bets consolidated and grouped on a single page !
+    </div>
+  </div>
+
+  <div class="home-section">
+    <div class="img-home">
+      <%= image_tag "money.png", class: "img-home-content" %>
+    </div>
+    <div class="txt-home">
+      Analyze these statistics and adapt your bets to maximize your winnings !
+    </div>
+  </div>
+
+    <% if user_signed_in? %>
+      <div class="button-home">
+        <%= link_to "My stats", stats_path, class: "btn btn-success mr-5" %>
+        <%= link_to "Add a bet", new_bet_path, class: "btn btn-success" %>
+      </div>
+    <% else %>
+      <div class="button-home">
+          <%= link_to "Start", new_user_session_path, class: "btn btn-success" %>
+      </div>
+    <% end %>
 
 </div>

@@ -50,10 +50,6 @@
             </li>
           <% end %>
 
-          <li class="list-group-item match-li">
-            <p><%= bet.combine %></p>
-          </li>
-
           <li class="list-group-item bet-li">
             <div>
               <p>Odd</p>
@@ -68,7 +64,7 @@
               <p><%= (bet.odd * bet.bet_amount).round(2) %> €</p>
             </div>
           </li>
-          <li class="list-group-item">State : <span class="badge badge-warning"><%= bet.state %></span></li>
+          <li class="list-group-item match-li"><span class="badge badge-warning"><%= bet.state %></span></li>
           <li class="list-group-item d-flex button-space">
             <%= link_to lose_path(bet.id), method: :put, class:"btn btn-danger" do %>
               <i class="fas fa-times"></i>
