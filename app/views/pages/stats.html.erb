@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>My Stats</h1>
+  <h1>Statistics</h1>
 
   <h2>General stats</h2>
 
@@ -30,7 +30,7 @@
     </div>
 
     <div class="stat">
-      <h3>Amount pending bets</h3>
+      <h3>Amount pending</h3>
       <p><%= @pending_bets_amount %> €</p>
     </div>
 
@@ -117,17 +117,17 @@
     <% end %>
 
     <div class="stat">
-      <h3>Medium odd</h3>
+      <h3>Odd average</h3>
       <p><%= @medium_odd.round(2) %></p>
     </div>
 
     <div class="stat">
-      <h3>Medium odd win</h3>
+      <h3>Odd win average</h3>
       <p><%= @medium_odd_win.round(2) %></p>
     </div>
 
     <div class="stat">
-      <h3>Medium odd lose</h3>
+      <h3>Odd lose average</h3>
       <p><%= @medium_odd_lose.round(2) %></p>
     </div>
 
@@ -147,17 +147,17 @@
     <% end %>
 
     <div class="stat">
-      <h3>Medium bet amount</h3>
+      <h3>Bet amount average</h3>
       <p><%= @medium_amount.round(2) %> €</p>
     </div>
 
     <div class="stat">
-      <h3>Medium wining bet amount</h3>
+      <h3>Wining bet amount average</h3>
       <p><%= @medium_win_amount.round(2) %> €</p>
     </div>
 
     <div class="stat">
-      <h3>Medium losing bet amount</h3>
+      <h3>Losing bet amount average</h3>
       <p><%= @medium_lose_amount.round(2) %> €</p>
     </div>
 

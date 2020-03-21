@@ -12,7 +12,7 @@ function columnChart() {
                    2]);
 
   var options = {
-    title: "Medium amount bets",
+    title: "Bets amount average",
     bar: {groupWidth: "70%"},
     legend: { position: "none" },
   };

@@ -29,12 +29,12 @@
 
     <% if user_signed_in? %>
       <div class="button-home">
-        <%= link_to "My stats", stats_path, class: "btn btn-success mr-5" %>
-        <%= link_to "Add a bet", new_bet_path, class: "btn btn-success" %>
+        <%= link_to "My stats", stats_path, class: "btn btn-primary mr-5" %>
+        <%= link_to "Add a bet", new_bet_path, class: "btn btn-primary" %>
       </div>
     <% else %>
       <div class="button-home">
-          <%= link_to "Start", new_user_session_path, class: "btn btn-success" %>
+          <%= link_to "Start", new_user_session_path, class: "btn btn-primary" %>
       </div>
     <% end %>
 

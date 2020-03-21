@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Your Bets results</h1>
+  <h1>Bets results</h1>
   <% @bets.each do |bet| %>
   <!-- MODAL DELETE -->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -35,7 +35,7 @@
           <% else %>
             <li class="list-group-item img-li">
               <div>
-                <%= JSON.parse(bet.league)["name"] %>
+                <p><%= JSON.parse(bet.league)["name"] %></p>
               </div>
               <div>
                 <img src="<%= JSON.parse(bet.league)["flag"] %>" alt="" class="image-card">
@@ -44,9 +44,9 @@
             </li>
 
             <li class="list-group-item match-li">
-              <div >
-                <img src="<%= JSON.parse(bet.match)["homeTeam"]["logo"] %>" alt="" class="logo-team mr-1">  VS <img src="<%= JSON.parse(bet.match)["awayTeam"]["logo"] %>" alt="" class="logo-team">
-              </div>
+              <p>
+                <img src="<%= JSON.parse(bet.match)["homeTeam"]["logo"] %>" alt="" class="logo-team mr-1">VS  <img src="<%= JSON.parse(bet.match)["awayTeam"]["logo"] %>" alt="" class="logo-team">
+              </p>
             </li>
           <% end %>
 
@@ -75,7 +75,9 @@
           </li>
 
           <div class="edit-bet">
-            <li class="list-group-item btn-edit">Edit bet <i class='fas fa-caret-square-down'></i></li>
+            <li class="list-group-item">
+              <p class="btn-edit">Edit bet <i class='fas fa-caret-square-down'></i></p>
+            </li>
 
             <div class="hidden-btn hidden">
 

@@ -44,7 +44,7 @@ class Bet extends Component {
       <div>
         <div className="custom-control custom-switch">
           <input type="checkbox" className="custom-control-input" id="combine-switch" onChange={this.handleCombine} name="bet[combine]"></input>
-          <label className="custom-control-label" htmlFor="combine-switch">Combined bets</label>
+          <label className="custom-control-label" htmlFor="combine-switch"><p>Combined bets</p></label>
         </div>
 
         <div className="" id="simple-bet">

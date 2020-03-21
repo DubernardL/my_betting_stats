@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Your pending Bets</h1>
+  <h1>Pending Bets</h1>
   <% @bets.each do |bet| %>
 <!-- MODAL DELETE -->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -34,9 +34,9 @@
             </li>
           <% else %>
             <li class="list-group-item img-li">
-              <div>
+              <p>
                 <%= JSON.parse(bet.league)["name"] %>
-              </div>
+              </p>
               <div>
                 <img src="<%= JSON.parse(bet.league)["flag"] %>" alt="" class="image-card">
                 <img src="<%= JSON.parse(bet.league)["logo"] %>" alt="" class="image-card">
@@ -44,9 +44,9 @@
             </li>
 
             <li class="list-group-item match-li">
-              <div >
-                <img src="<%= JSON.parse(bet.match)["homeTeam"]["logo"] %>" alt="" class="logo-team mr-1">  VS <img src="<%= JSON.parse(bet.match)["awayTeam"]["logo"] %>" alt="" class="logo-team">
-              </div>
+              <p>
+                <img src="<%= JSON.parse(bet.match)["homeTeam"]["logo"] %>" alt="" class="logo-team mr-1">VS <img src="<%= JSON.parse(bet.match)["awayTeam"]["logo"] %>" alt="" class="logo-team">
+              </p>
             </li>
           <% end %>
 
