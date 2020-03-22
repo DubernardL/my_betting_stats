@@ -29,6 +29,7 @@ ReactDOM.render(
     <Router history={history}>
       <Switch>
         <Route path="/bets/new" exact component={App} />
+        <Redirect from="/bets/new" to={App} />
       </Switch>
     </Router>
   </Provider>,
