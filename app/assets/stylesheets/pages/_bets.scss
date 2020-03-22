@@ -78,13 +78,38 @@
 }
 
 .card {
-  border: 2px solid rgba(0,0,0,.200) !important;
+  border: 2px solid #4c5d72 !important;
 }
 
 .fa-caret-square-down {
-  color: #1B77B5;
+  color: #2c3b4f;
 }
 
 .fa-caret-square-up {
-  color: #1B77B5;
+  color: #2c3b4f;
+}
+
+// Components bootstrap with my colors
+
+.badge-danger {
+  background-color: #d8413c !important;
+}
+
+.badge-success {
+  background-color: #6ac46b !important;
+}
+
+.badge-warning {
+  background-color: #4c5d72 !important;
+  color: white !important;
+}
+
+.btn-danger {
+  background-color: #d8413c !important;
+  border: none !important;
+}
+
+.btn-success {
+  background-color: #6ac46b !important;
+  border: none !important;
 }

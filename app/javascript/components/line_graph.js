@@ -17,7 +17,7 @@ function drawLogScales() {
           title: 'Net profit',
           minValue: 0,
         },
-        backgroundColor: '#f1f8e9',
+        colors: ['#2c3b4f'],
         legend: { position: 'none' }
       };
 

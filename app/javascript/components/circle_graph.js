@@ -9,8 +9,8 @@ function drawChart() {
     title: 'Percentage bets win / lose',
     // is3D: true,
     slices: {
-            0: { color: '#109618' },
-            1: { color: '#DC3912' }
+            0: { color: '#6ac46b' },
+            1: { color: '#d8413c' }
           }
   };
 
