@@ -46,13 +46,14 @@
 }
 
 .image-card {
-  width: 23px;
+  width: 35px;
   margin-left: 5px;
 }
 
 .img-li {
   display: flex !important;
   justify-content: space-between;
+  align-items: center;
 }
 
 .match-li {
@@ -92,24 +93,29 @@
 // Components bootstrap with my colors
 
 .badge-danger {
+  font-family: 'Prompt', sans-serif;
   background-color: #d8413c !important;
 }
 
 .badge-success {
+  font-family: 'Prompt', sans-serif;
   background-color: #6ac46b !important;
 }
 
 .badge-warning {
+  font-family: 'Prompt', sans-serif;
   background-color: #4c5d72 !important;
   color: white !important;
 }
 
 .btn-danger {
+  font-family: 'Prompt', sans-serif;
   background-color: #d8413c !important;
   border: none !important;
 }
 
 .btn-success {
+  font-family: 'Prompt', sans-serif;
   background-color: #6ac46b !important;
   border: none !important;
 }
