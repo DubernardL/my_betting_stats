@@ -4,8 +4,10 @@ import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { logger } from 'redux-logger';
 import promiseMiddleware from 'redux-promise';
-import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
-import { createHistory as history } from 'history';
+import { Router, Route, Redirect, Switch } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+
+const history = createBrowserHistory();
 
 // reducers
 import leaguesReducer from './reducers/leagues_reducer';
@@ -29,7 +31,6 @@ ReactDOM.render(
     <Router history={history}>
       <Switch>
         <Route path="/bets/new" exact component={App} />
-        <Redirect from="/bets/new" to={App} />
       </Switch>
     </Router>
   </Provider>,

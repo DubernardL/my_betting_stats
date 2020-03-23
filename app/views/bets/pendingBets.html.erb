@@ -32,7 +32,7 @@
             <li class="list-group-item match-li">
               <h3>Combined Bet</h3>
             </li>
-          <% else %>
+          <% elsif bet.league != "" && bet.match != "" %>
             <li class="list-group-item img-li">
               <p>
                 <%= JSON.parse(bet.league)["name"] %>
