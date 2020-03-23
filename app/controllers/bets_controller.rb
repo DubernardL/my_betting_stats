@@ -3,7 +3,7 @@ class BetsController < ApplicationController
 
   def index
     user_bets = Bet.where(user: current_user)
-    @bets = user_bets.where.not(state: "pending").reverse_order
+    @bets = user_bets.where.not(state: "pending").sort_by{ |bet| bet.updated_at }.reverse
   end
 
   def pendingBets
@@ -40,6 +40,17 @@ class BetsController < ApplicationController
     @bet = Bet.new(bet_params)
     @bet.user = current_user
     params[:bet][:combine] == "combine" ? @bet.combine = true :  @bet.combine = false
+
+    if @bet.league === ""
+      @bet.league = "Other league"
+    end
+    if @bet.match === ""
+      @bet.match = "Other match"
+    end
+    if @bet.name === ""
+      @bet.name = "Other bet"
+    end
+
     @bet.odd = params['bet']['odd'].gsub(',' && '.', '.').to_f
     @bet.bet_amount = params['bet']['bet_amount'].gsub(',' && '.', '.').to_f
     if @bet.save
@@ -56,8 +67,7 @@ class BetsController < ApplicationController
   end
 
   def destroy
-    @bets = Bet.where(user: current_user)
-    @bet = @bets.find(params[:id])
+    @bet = Bet.find(params[:id])
     @bet.destroy
     respond_to do |format|
       format.html { redirect_to bets_path, alert: "Bet deleted"}

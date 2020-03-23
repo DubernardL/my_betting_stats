@@ -1,18 +1,18 @@
 <div class="container">
   <h1>Pending Bets</h1>
   <% @bets.each do |bet| %>
-<!-- MODAL DELETE -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <!-- MODAL DELETE -->
+    <div id="modal-<%= bet.id %>" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Delete this bet for life !!!</h5>
+            <h3 class="modal-title" id="exampleModalLongTitle">Delete this bet ?</h3>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            Are you sure you want to delete this bet from your stats ??
+            <p>Are you sure you want to delete this bet from your stats ?</p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -50,6 +50,12 @@
             </li>
           <% end %>
 
+          <li class="list-group-item match-li">
+            <p>
+              <%= bet.name %>
+            </p>
+          </li>
+
           <li class="list-group-item bet-li">
             <div>
               <p>Odd</p>
@@ -74,14 +80,13 @@
             <% end %>
           </li>
           <li class="list-group-item d-flex button-space">
-            <div class="trash-div">
-              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">
-                Delete
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-<%= bet.id %>">
+                  Delete
               </button>
-            </div>
           </li>
         </ul>
       </div>
     </div>
+
   <% end %>
 </div>

@@ -39,6 +39,11 @@
       <p><%= @finished_bets.count %></p>
     </div>
 
+    <div class="stat">
+      <h3>Amount finished bets</h3>
+      <p><%=  @finished_bets_amount %></p>
+    </div>
+
     <% if @profit >= 0 %>
       <div class="stat positive">
     <% else %>
@@ -202,7 +207,14 @@
 
   let odd_graph = [
     ['amount', 'odd', 'win/lose'],
+    <% if @losing_bets.length == 0 %>
+      [0, 0, null],
+    <% end %>
+    <% if @wining_bets.length == 0 %>
+      [0, null, 0],
+    <% end %>
     <% @bets.each do |bet| %>
+
       <% if bet.state == "win" %>
         [<%= bet.odd %>, null, <%= bet.bet_amount %>],
       <% elsif bet.state == "lose" %>
@@ -211,10 +223,11 @@
     <% end %>
   ];
 
-  <%= @profit_graph = 0 %>
-  <%= @count = 0 %>
+  <% @profit_graph = 0 %>
+  <% @count = 0 %>
 
   let line_graph = [
+    [0, 0],
     <% @finished_bets.each do |bet| %>
       <% if bet.state == "win" %>
         <% @profit_graph += (bet.bet_amount * bet.odd) - bet.bet_amount %>

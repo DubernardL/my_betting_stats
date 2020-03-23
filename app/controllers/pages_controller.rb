@@ -13,6 +13,10 @@ class PagesController < ApplicationController
     # All bets
     @bets = Bet.where(user: current_user)
 
+    # Total bets
+    @total_bets = 0
+    @bets.each { |bet| @total_bets += bet.bet_amount }
+
     # Pending bets
     @pending_bets = @bets.where(state: "pending")
 
@@ -23,13 +27,13 @@ class PagesController < ApplicationController
     # Finished bets
     @finished_bets = @bets.where.not(state: "pending")
 
-    # Total bets
-    @total_bets = 0
-    @bets.each { |bet| @total_bets += bet.bet_amount }
+    # Amount finished_bet
+    @finished_bets_amount = 0
+    @finished_bets.each { |finished_bet| @finished_bets_amount += finished_bet.bet_amount }
 
     # Profit
     @profit = 0
-    @bets.each do |bet|
+    @finished_bets.each do |bet|
       if bet.state == "win"
         @profit += (bet.bet_amount * bet.odd) - bet.bet_amount
       else
