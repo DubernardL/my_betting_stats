@@ -41,7 +41,6 @@ class BetsController < ApplicationController
     @bet.user = current_user
     params[:bet][:combine] == "combine" ? @bet.combine = true :  @bet.combine = false
     @bet.odd = params['bet']['odd'].gsub(',' && '.', '.').to_f
-    raise
     @bet.bet_amount = params['bet']['bet_amount'].gsub(',' && '.', '.').to_f
     if @bet.save
       respond_to do |format|
