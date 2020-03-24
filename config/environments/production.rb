@@ -94,4 +94,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.default_url_options = { host: 'https://my-bets-stats.herokuapp.com/'}
+
+  # FOR SERVICE WORKER (added by me) : Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
+  config.force_ssl = true
 end
