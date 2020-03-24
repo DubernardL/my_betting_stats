@@ -8,6 +8,7 @@ Bundler.require(*Rails.groups)
 
 module MyBettingStats
   class Application < Rails::Application
+    config.assets.initialize_on_precompile = false
     config.generators do |generate|
           generate.assets false
           generate.helper false
@@ -20,6 +21,5 @@ module MyBettingStats
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
-  config.assets.initialize_on_precompile = false
   end
 end
