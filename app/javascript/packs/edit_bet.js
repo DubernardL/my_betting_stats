@@ -6,10 +6,11 @@ const edit_bet = () => {
     item.addEventListener('click', ((event) => {
       event.preventDefault();
       btn.classList.toggle("hidden");
-      if(btn_edit.innerHTML === 'Edit bet <i class="fas fa-caret-square-down" aria-hidden="true"></i>') {
+      console.log(btn_edit);
+      if(btn_edit.innerHTML === 'Edit bet <i class=\"fas fa-caret-square-down\"></i>') {
         btn_edit.innerHTML = 'Close <i class="fas fa-caret-square-up"></i>';
       } else {
-        btn_edit.innerHTML = 'Edit bet <i class="fas fa-caret-square-down" aria-hidden="true"></i>';
+        btn_edit.innerHTML = 'Edit bet <i class=\"fas fa-caret-square-down\"></i>';
       }
     }))
   });
