@@ -86,10 +86,11 @@
             <div class="hidden-btn hidden">
 
               <li class="list-group-item d-flex button-space">
-                <%= link_to lose_path(bet.id), method: :put, class:"btn btn-danger" do %>
+                <%= button_to lose_path(bet.id), class:"btn btn-danger" do %>
                   <i class="fas fa-times"></i>
                 <% end %>
-                <%= link_to win_path(bet.id), method: :patch, class:"btn btn-success" do %>
+
+                <%= button_to win_path(bet.id), class:"btn btn-success" do %>
                   <i class="fas fa-check"></i>
                 <% end %>
               </li>

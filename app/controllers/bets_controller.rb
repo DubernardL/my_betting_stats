@@ -10,9 +10,9 @@ class BetsController < ApplicationController
     @bets = Bet.where(user: current_user, state:"pending").reverse_order
   end
 
-  def win
+  def lose
     @bet = Bet.find(params[:id])
-    @bet.state = "win"
+    @bet.state = "lose"
     if @bet.save
       respond_to do |format|
         format.html { redirect_to bets_path, alert: "Result registred"}
@@ -21,9 +21,9 @@ class BetsController < ApplicationController
     end
   end
 
-  def lose
+  def win
     @bet = Bet.find(params[:id])
-    @bet.state = "lose"
+    @bet.state = "win"
     if @bet.save
       respond_to do |format|
         format.html { redirect_to bets_path, alert: "Result registred"}
