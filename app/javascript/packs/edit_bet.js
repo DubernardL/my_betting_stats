@@ -3,10 +3,9 @@ const edit_bet = () => {
   links.forEach((item) => {
     const btn = item.querySelector('.hidden-btn');
     const btn_edit = item.querySelector('.btn-edit');
-    item.addEventListener('click', ((event) => {
+    btn_edit.addEventListener('click', ((event) => {
       event.preventDefault();
       btn.classList.toggle("hidden");
-      console.log(btn_edit);
       if(btn_edit.innerHTML === 'Edit bet <i class=\"fas fa-caret-square-down\"></i>') {
         btn_edit.innerHTML = 'Close <i class="fas fa-caret-square-up"></i>';
       } else {
