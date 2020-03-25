@@ -24,7 +24,8 @@
           <%= link_to "Pending bets", pending_bets_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <a href="<%= destroy_user_session_path %>" class="nav-link" data-method="delete">Log out</a>
+          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+          <a href="<%= destroy_user_session_path %>" class="nav-link" method="delete">Log out</a>
         </li>
       <% else %>
         <li class="nav-item">
