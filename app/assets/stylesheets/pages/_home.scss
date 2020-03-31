@@ -25,11 +25,20 @@
   border: none !important;
 }
 
+.img-pwa-top {
+  width: 100%;
+  margin-bottom: 50px;
+}
+
 .div-pwa {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 50px;
+}
+
+.txt-pwa {
+  margin-bottom: 25px;
 }
 
 .img-pwa {
