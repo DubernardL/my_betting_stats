@@ -41,26 +41,31 @@ class BetsController < ApplicationController
     @bet.user = current_user
     params[:bet][:combine] == "combine" ? @bet.combine = true :  @bet.combine = false
 
-    if @bet.league === ""
-      @bet.league = "Other league"
-    end
-    if @bet.match === ""
-      @bet.match = "Other match"
-    end
     if @bet.name === ""
       @bet.name = "Other bet"
     end
 
     @bet.odd = params['bet']['odd'].gsub(',' && '.', '.').to_f
     @bet.bet_amount = params['bet']['bet_amount'].gsub(',' && '.', '.').to_f
-    if @bet.save
+
+    if @bet.sport == ""
+      respond_to do |format|
+        format.html { redirect_to new_bet_path, alert: "Choose your sport."}
+        format.js
+      end
+    elsif @bet.odd == 0.0 || @bet.bet_amount == 0.0
+      respond_to do |format|
+        format.html { redirect_to new_bet_path, alert: "Don't let Odd or Amount empty pls."}
+        format.js
+      end
+    elsif @bet.save
       respond_to do |format|
         format.html { redirect_to new_bet_path, alert: "Bet added !"}
         format.js
       end
     else
       respond_to do |format|
-        format.html { redirect_to new_bet_path, alert: "Oops problem ! Come back later pls :)"}
+        format.html { redirect_to new_bet_path, alert: "Don't let League and Match empty pls."}
         format.js
       end
     end
@@ -78,6 +83,6 @@ class BetsController < ApplicationController
   private
 
   def bet_params
-    params.require(:bet).permit(:league, :match, :name, :odd, :bet_amount)
+    params.require(:bet).permit(:sport, :league, :match, :name, :odd, :bet_amount)
   end
 end

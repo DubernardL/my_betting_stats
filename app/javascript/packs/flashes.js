@@ -5,7 +5,7 @@ const alert_undisplay = () => {
       setTimeout(1000);
       alert.className = "undisplay-flash"
     }
-  }, 1500)
+  }, 2500)
 };
 
 alert_undisplay();

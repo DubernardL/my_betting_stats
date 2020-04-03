@@ -9,7 +9,16 @@ import { setBetsName } from '../actions';
 class Bet extends Component {
 
   componentDidMount() {
-    this.props.setLeagues();
+
+  }
+
+  changeSport = (event) => {
+    const class_selected = document.getElementById('list-sport').options;
+    const sport_selected = class_selected[class_selected.selectedIndex].value;
+    console.log(sport_selected);
+    if(sport_selected === "football") {
+      this.props.setLeagues();
+    }
   }
 
   changeLeague = (event) => {
@@ -30,6 +39,17 @@ class Bet extends Component {
   handleCombine = (event) => {
     const simple_bet = document.getElementById('simple-bet');
     simple_bet.classList.toggle("hidden");
+
+    document.getElementById('league-value').value = "No League";
+    document.getElementById('match-value').value = "No Match";
+
+    const list_sport = document.getElementById('list-sport');
+    if(list_sport.innerHTML.includes('<option value="Multisports" id="multi-div">Multisports</option>')) {
+      list_sport.removeChild(document.getElementById('multi-div'));
+    } else {
+      list_sport.insertAdjacentHTML('beforeend', '<option value="Multisports" id="multi-div">Multisports</option>');
+    }
+
     let value = document.getElementById('combine-switch').value
     if (value == "on") {
       document.getElementById('combine-switch').value = "combine";
@@ -47,9 +67,14 @@ class Bet extends Component {
           <label className="custom-control-label" htmlFor="combine-switch"><p>Combined bets</p></label>
         </div>
 
+        <select className="custom-select" id="list-sport" onChange={this.changeSport} name="bet[sport]" required>
+          <option id="sport-value" value="">-- Choose your sport --</option>
+          <option value="football">Football</option>
+        </select>
+
         <div className="" id="simple-bet">
           <select className="custom-select" id="list-league" onChange={this.changeLeague} name="bet[league]" required>
-            <option value="">-- Choose your league --</option>
+            <option id="league-value" value="">-- Choose your league --</option>
             {
               this.props.leagues.map((league) => {
                 return(
@@ -60,7 +85,7 @@ class Bet extends Component {
           </select>
 
           <select className="custom-select" id="list-match" onChange={this.changeMatch} name="bet[match]" required>
-            <option value="">-- Choose your match --</option>
+            <option id="match-value" value="">-- Choose your match --</option>
             {
               this.props.matchs.map((match) => {
                 return(
