@@ -1,43 +1,43 @@
 const OPTIONS = {
   method: 'GET',
   headers: {
-    'X-RapidAPI-Host': 'api-football-v1.p.rapidapi.com',
-    'X-RapidAPI-Key': process.env.FOOT_KEY
+    'X-Auth-Token': process.env.FOOT_KEY,
   }
 };
 
 export async function setLeagues() {
+  // http://api.football-data.org/v2/competitions
   const countries = [
     {
-      name: "france",
-      leagues: ["Ligue 1", "Ligue 2"],
+      name: "Ligue 1",
+      leagues_id: 2015
     },
     {
-      name: "england",
-      leagues: ["Premier League"],
+      name: "Premier League",
+      leagues_id: 2021,
     },
     {
-      name: "germany",
-      leagues: ["Bundesliga 1"],
+      name: "Bundesliga 1",
+      leagues_id: 2002,
+    },
+    {
+      name: "Primera Division",
+      leagues_id: 2014,
     },
   ]
 
-  let allLeagues = []
+  let allLeagues = [];
 
   for (const country of countries) {
-    const { name, leagues } = country
+    const { name, leagues_id } = country;
     const response = await fetch(
-      `https://api-football-v1.p.rapidapi.com/v2/leagues/current/${name}`,
+      `http://api.football-data.org/v2/competitions/${leagues_id}`,
       OPTIONS
-    )
-    const data = await response.json()
-
-    for (const apiLeague of data.api.leagues) {
-      if (leagues.includes(apiLeague.name)) {
-        allLeagues.push(apiLeague)
-      }
-    }
+    );
+    const data = await response.json();
+    allLeagues.push(data);
   }
+
   return {
     type: "SET_LEAGUES",
     payload: allLeagues

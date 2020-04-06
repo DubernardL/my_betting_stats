@@ -15,7 +15,6 @@ class Bet extends Component {
   changeSport = (event) => {
     const class_selected = document.getElementById('list-sport').options;
     const sport_selected = class_selected[class_selected.selectedIndex].value;
-    console.log(sport_selected);
     if(sport_selected === "football") {
       this.props.setLeagues();
     }
