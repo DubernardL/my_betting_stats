@@ -31,7 +31,7 @@ export async function setLeagues() {
   for (const country of countries) {
     const { name, leagues_id } = country;
     const response = await fetch(
-      `http://api.football-data.org/v2/competitions/${leagues_id}`,
+      `https://api.football-data.org/v2/competitions/${leagues_id}`,
       OPTIONS
     );
     const data = await response.json();
@@ -50,7 +50,7 @@ export async function setMatchs(league, match) {
 
   let allMatchs = []
 
-  const response = await fetch(`http://api.football-data.org/v2/competitions/${league}/matches?matchday=${match}`,
+  const response = await fetch(`https://api.football-data.org/v2/competitions/${league}/matches?matchday=${match}`,
     OPTIONS
   )
   const data = await response.json();
