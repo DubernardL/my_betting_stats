@@ -45,7 +45,8 @@
 
             <li class="list-group-item match-li">
               <p>
-                <img src="<%= JSON.parse(bet.match)["homeTeam"]["logo"] %>" alt="" class="logo-team mr-1">VS <img src="<%= JSON.parse(bet.match)["awayTeam"]["logo"] %>" alt="" class="logo-team">
+                <p><%= JSON.parse(bet.match) %></p>
+                <img src="<%= JSON.parse(bet.match)["homeTeam"]["logo"] %>" alt="" class="logo-team mr-1"> VS <img src="<%= JSON.parse(bet.match)["awayTeam"]["logo"] %>" alt="" class="logo-team">
               </p>
             </li>
           <% end %>

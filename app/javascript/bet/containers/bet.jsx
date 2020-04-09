@@ -8,31 +8,21 @@ import { setBetsName } from '../actions';
 
 class Bet extends Component {
 
-  componentDidMount() {
-
-  }
-
   changeSport = (event) => {
     const class_selected = document.getElementById('list-sport').options;
     const sport_selected = class_selected[class_selected.selectedIndex].value;
     if(sport_selected === "football") {
       this.props.setLeagues();
     }
+    this.props.setBetsName(sport_selected);
   }
 
   changeLeague = (event) => {
     const class_selected = document.getElementById('list-league').options;
     const league_selected = class_selected[class_selected.selectedIndex];
-    const league_id = league_selected.attributes.league_id.value;
-    this.props.setMatchs(league_id);
-  }
-
-  changeMatch = (event) => {
-    const class_selected = document.getElementById('list-match').options;
-    const match_selected = class_selected[class_selected.selectedIndex];
-    console.log(match_selected);
-    const match_id = match_selected.attributes.fixture_id.value;
-    this.props.setBetsName(match_id);
+    const league_id = JSON.parse(league_selected.value).id;
+    const match_day = JSON.parse(league_selected.value).currentSeason.currentMatchday;
+    this.props.setMatchs(league_id, match_day);
   }
 
   handleCombine = (event) => {
@@ -77,18 +67,18 @@ class Bet extends Component {
             {
               this.props.leagues.map((league) => {
                 return(
-                  <option value={JSON.stringify(league)} league_id={league.league_id} key={id += 1}>{league.name}</option>
+                  <option value={JSON.stringify(league)} key={league.id}>{league.name}</option>
                 );
               })
             }
           </select>
 
-          <select className="custom-select" id="list-match" onChange={this.changeMatch} name="bet[match]" required>
+          <select className="custom-select" id="list-match" name="bet[match]" required>
             <option id="match-value" value="">-- Choose your match --</option>
             {
               this.props.matchs.map((match) => {
                 return(
-                  <option value={JSON.stringify(match)} fixture_id={match.fixture_id} key={id += 1}>{match.homeTeam.team_name} VS {match.awayTeam.team_name}</option>
+                  <option value={JSON.stringify(match)} key={match.id}>{match.homeTeam.name} VS {match.awayTeam.name}</option>
                 );
               })
             }

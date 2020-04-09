@@ -46,16 +46,16 @@ export async function setLeagues() {
 
 
 
-export async function setMatchs(league_id) {
+export async function setMatchs(league, match) {
 
   let allMatchs = []
 
-  const response = await fetch(`https://api-football-v1.p.rapidapi.com/v2/fixtures/league/${league_id}/next/10`,
+  const response = await fetch(`http://api.football-data.org/v2/competitions/${league}/matches?matchday=${match}`,
     OPTIONS
   )
   const data = await response.json();
 
-  for (const apiMatch of data.api.fixtures) {
+  for (const apiMatch of data.matches) {
     allMatchs.push(apiMatch)
   }
 
@@ -65,23 +65,10 @@ export async function setMatchs(league_id) {
   }
 }
 
-export async function setBetsName(match_id) {
-
-  let allBet = []
-
-  const response = await fetch(`https://api-football-v1.p.rapidapi.com/v2/odds/fixture/${match_id}`,
-    OPTIONS
-  )
-
-  const data = await response.json();
-  const unibet = data.api.odds[0].bookmakers.filter((bookmaker) => {
-    if((_.invert(bookmaker))["Unibet"] || (_.invert(bookmaker))["Interwetten"]) {
-      return bookmaker;
-    }
-  });
-
-  for (const apiBet of unibet[0].bets ) {
-    allBet.push(apiBet.label_name)
+export async function setBetsName(sport) {
+  let allBet = [];
+  if(sport === 'football') {
+    allBet.push('Match winner', 'Exact score', 'Halftime score');
   }
 
   return {
