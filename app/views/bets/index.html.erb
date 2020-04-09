@@ -33,18 +33,17 @@
             </li>
           <% else %>
             <li class="list-group-item img-li">
-              <div>
-                <p><%= JSON.parse(bet.league)["name"] %></p>
-              </div>
-              <div>
-                <img src="<%= JSON.parse(bet.league)["flag"] %>" alt="" class="image-card">
-                <img src="<%= JSON.parse(bet.league)["logo"] %>" alt="" class="image-card">
-              </div>
+              <p>
+                <%= JSON.parse(bet.league)["name"] %>
+              </p>
+              <!-- <div>
+                <img src="<%=  %>" alt="" class="image-card">
+              </div> -->
             </li>
 
             <li class="list-group-item match-li">
               <p>
-                <img src="<%= JSON.parse(bet.match)["homeTeam"]["logo"] %>" alt="" class="logo-team mr-1">VS  <img src="<%= JSON.parse(bet.match)["awayTeam"]["logo"] %>" alt="" class="logo-team">
+                <%= JSON.parse(bet.match)["homeTeam"]['name'] %> <br>VS<br> <%= JSON.parse(bet.match)["awayTeam"]['name'] %>
               </p>
             </li>
           <% end %>
