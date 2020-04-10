@@ -16,6 +16,8 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
 
+gem 'unirest'
+
 gem 'serviceworker-rails'
 
 group :development do

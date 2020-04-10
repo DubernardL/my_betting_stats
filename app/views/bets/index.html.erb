@@ -36,14 +36,34 @@
               <p>
                 <%= JSON.parse(bet.league)["name"] %>
               </p>
-              <!-- <div>
-                <img src="<%=  %>" alt="" class="image-card">
-              </div> -->
+              <div>
+                <img src="<%=
+                    response = Unirest.get "http://api.football-data.org/v2/areas/#{JSON.parse(bet.league)["area"]["id"]}",
+                      headers:{
+                        "X-Auth-Token" => ENV['FOOT_KEY']
+                      }
+                    response.body['ensignUrl']
+                  %>" alt="" class="image-card">
+              </div>
             </li>
 
             <li class="list-group-item match-li">
               <p>
-                <%= JSON.parse(bet.match)["homeTeam"]['name'] %> <br>VS<br> <%= JSON.parse(bet.match)["awayTeam"]['name'] %>
+                <img class="logo-team" src="<%=
+                  response = Unirest.get "http://api.football-data.org/v2/teams/#{JSON.parse(bet.match)['homeTeam']['id']}",
+                    headers:{
+                      "X-Auth-Token" => ENV['FOOT_KEY']
+                    }
+                  response.body['crestUrl']
+                %>">
+                VS
+                <img class="logo-team" src="<%=
+                  response = Unirest.get "http://api.football-data.org/v2/teams/#{JSON.parse(bet.match)['awayTeam']['id']}",
+                    headers:{
+                      "X-Auth-Token" => ENV['FOOT_KEY']
+                    }
+                  response.body['crestUrl']
+                %>">
               </p>
             </li>
           <% end %>

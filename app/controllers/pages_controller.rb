@@ -4,7 +4,7 @@ require 'openssl'
 require 'json'
 
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home, :stats]
+  skip_before_action :authenticate_user!, only: [:home]
 
   def home
   end

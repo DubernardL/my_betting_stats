@@ -1,6 +1,6 @@
-class BetsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:new, :create]
+require 'unirest'
 
+class BetsController < ApplicationController
   def index
     user_bets = Bet.where(user: current_user)
     @bets = user_bets.where.not(state: "pending").sort_by{ |bet| bet.updated_at }.reverse
