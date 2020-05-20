@@ -1,5 +1,10 @@
 <div class="container">
   <h1>Bets results</h1>
+
+  <% if @bets.empty? %>
+    <p>Find your finished bets here. To record the result of a bet, find your <a href="<%= pending_bets_path %>">pending bets</a></p>
+  <% end %>
+
   <% @bets.each do |bet| %>
 <!-- MODAL DELETE -->
     <div id="modal-<%= bet.id %>" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -36,41 +41,29 @@
               <p>
                 <%= JSON.parse(bet.league)["name"] %>
               </p>
-              <div>
-                <img src="<%=
-                    response = Unirest.get "http://api.football-data.org/v2/areas/#{JSON.parse(bet.league)["area"]["id"]}",
-                      headers:{
-                        "X-Auth-Token" => ENV['FOOT_KEY']
-                      }
-                    response.body['ensignUrl']
-                  %>" alt="" class="image-card">
-              </div>
             </li>
 
+<!-- <img class="logo-team" src="<%#=
+  response = Unirest.get "http://api.football-data.org/v2/teams/#{JSON.parse(bet.match)['awayTeam']['id']}",
+    headers:{
+      "X-Auth-Token" => ENV['FOOT_KEY']
+    }
+  response.body['crestUrl']
+%>"> -->
+
             <li class="list-group-item match-li">
-              <p>
-                <img class="logo-team" src="<%=
-                  response = Unirest.get "http://api.football-data.org/v2/teams/#{JSON.parse(bet.match)['homeTeam']['id']}",
-                    headers:{
-                      "X-Auth-Token" => ENV['FOOT_KEY']
-                    }
-                  response.body['crestUrl']
-                %>">
+              <p><%= JSON.parse(bet.match)['homeTeam']['name'] %>
+                <br/>
                 VS
-                <img class="logo-team" src="<%=
-                  response = Unirest.get "http://api.football-data.org/v2/teams/#{JSON.parse(bet.match)['awayTeam']['id']}",
-                    headers:{
-                      "X-Auth-Token" => ENV['FOOT_KEY']
-                    }
-                  response.body['crestUrl']
-                %>">
+                <br/>
+                <%= JSON.parse(bet.match)['awayTeam']['name'] %>
               </p>
             </li>
           <% end %>
 
           <li class="list-group-item match-li">
             <p>
-              <%= bet.name %>
+              <%= bet.combine ? bet.sport : bet.name %>
             </p>
           </li>
 

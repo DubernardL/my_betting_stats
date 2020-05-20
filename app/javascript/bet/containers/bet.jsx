@@ -9,12 +9,16 @@ import { setBetsName } from '../actions';
 class Bet extends Component {
 
   changeSport = (event) => {
-    const class_selected = document.getElementById('list-sport').options;
-    const sport_selected = class_selected[class_selected.selectedIndex].value;
-    if(sport_selected === "football") {
-      this.props.setLeagues();
+    const combine_selector = document.getElementById('combine-switch').value;
+    // On veut fetch les leagues et les types de bet que si le bet n'est pas combine
+    if(combine_selector === "on") {
+      const class_selected = document.getElementById('list-sport').options;
+      const sport_selected = class_selected[class_selected.selectedIndex].value;
+      if(sport_selected === "football") {
+        this.props.setLeagues();
+      }
+      this.props.setBetsName(sport_selected);
     }
-    this.props.setBetsName(sport_selected);
   }
 
   changeLeague = (event) => {
@@ -36,7 +40,7 @@ class Bet extends Component {
     if(list_sport.innerHTML.includes('<option value="Multisports" id="multi-div">Multisports</option>')) {
       list_sport.removeChild(document.getElementById('multi-div'));
     } else {
-      list_sport.insertAdjacentHTML('beforeend', '<option value="Multisports" id="multi-div">Multisports</option>');
+      list_sport.firstChild.insertAdjacentHTML('afterend', '<option value="Multisports" id="multi-div">Multisports</option>');
     }
 
     let value = document.getElementById('combine-switch').value

@@ -15,7 +15,7 @@ class BetsController < ApplicationController
     @bet.state = "lose"
     if @bet.save
       respond_to do |format|
-        format.html { redirect_to bets_path, alert: "Result registred"}
+        format.html { redirect_to request.referrer, alert: "Result registred"}
         format.js
       end
     end
@@ -26,7 +26,7 @@ class BetsController < ApplicationController
     @bet.state = "win"
     if @bet.save
       respond_to do |format|
-        format.html { redirect_to bets_path, alert: "Result registred"}
+        format.html { redirect_to request.referrer, alert: "Result registred"}
         format.js
       end
     end
@@ -39,7 +39,11 @@ class BetsController < ApplicationController
   def create
     @bet = Bet.new(bet_params)
     @bet.user = current_user
-    params[:bet][:combine] == "combine" ? @bet.combine = true :  @bet.combine = false
+
+    if params[:bet][:combine] == "combine"
+      @bet.combine = true
+      @bet.name = "Combined"
+    end
 
     if @bet.name === ""
       @bet.name = "Other bet"
@@ -50,22 +54,22 @@ class BetsController < ApplicationController
 
     if @bet.sport == ""
       respond_to do |format|
-        format.html { redirect_to new_bet_path, alert: "Choose your sport."}
+        format.html { redirect_to request.referrer, alert: "Don't let sport empty"}
         format.js
       end
     elsif @bet.odd == 0.0 || @bet.bet_amount == 0.0
       respond_to do |format|
-        format.html { redirect_to new_bet_path, alert: "Don't let Odd or Amount empty pls."}
+        format.html { redirect_to request.referrer, alert: "Don't let Odd or Amount empty"}
         format.js
       end
     elsif @bet.save
       respond_to do |format|
-        format.html { redirect_to new_bet_path, alert: "Bet added !"}
+        format.html { redirect_to request.referrer, alert: "Bet added !"}
         format.js
       end
     else
       respond_to do |format|
-        format.html { redirect_to new_bet_path, alert: "Don't let League and Match empty pls."}
+        format.html { redirect_to request.referrer, alert: "Don't let League or Match empty"}
         format.js
       end
     end
@@ -75,7 +79,7 @@ class BetsController < ApplicationController
     @bet = Bet.find(params[:id])
     @bet.destroy
     respond_to do |format|
-      format.html { redirect_to bets_path, alert: "Bet deleted"}
+      format.html { redirect_to request.referrer, alert: "Bet deleted"}
       format.js
     end
   end

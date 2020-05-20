@@ -1,12 +1,12 @@
-const OPTIONS = {
+const HEAD = {
   method: 'GET',
+  origin: '',
   headers: {
     'X-Auth-Token': process.env.FOOT_KEY,
   }
 };
 
 export async function setLeagues() {
-  // http://api.football-data.org/v2/competitions
   const countries = [
     {
       name: "Ligue 1",
@@ -31,8 +31,8 @@ export async function setLeagues() {
   for (const country of countries) {
     const { name, leagues_id } = country;
     const response = await fetch(
-      `https://api.football-data.org/v2/competitions/${leagues_id}`,
-      OPTIONS
+      `http://api.football-data.org/v2/competitions/${leagues_id}`,
+      HEAD
     );
     const data = await response.json();
     allLeagues.push(data);
@@ -44,14 +44,12 @@ export async function setLeagues() {
   }
 }
 
-
-
 export async function setMatchs(league, match) {
 
   let allMatchs = []
 
-  const response = await fetch(`https://api.football-data.org/v2/competitions/${league}/matches?matchday=${match}`,
-    OPTIONS
+  const response = await fetch(`http://api.football-data.org/v2/competitions/${league}/matches?matchday=${match}`,
+    HEAD
   )
   const data = await response.json();
 
@@ -66,9 +64,10 @@ export async function setMatchs(league, match) {
 }
 
 export async function setBetsName(sport) {
+  // CLASSER PAR ORDRE ALPHABETIQUE
   let allBet = [];
   if(sport === 'football') {
-    allBet.push('Match winner', 'Exact score', 'Halftime score');
+    allBet.push('Other bet', 'Live bet', 'Combo', 'Double chance', 'Difference between teams', 'Exact score', 'Exact number of goals', 'First team to score', 'First scorer', 'Halftime result', 'Handicap','Halftime score', 'Match winner', 'Penalty goal', 'Scorer', 'Total goals');
   }
 
   return {

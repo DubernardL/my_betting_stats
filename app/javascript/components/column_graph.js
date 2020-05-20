@@ -15,6 +15,7 @@ function columnChart() {
     title: "Bets amount average",
     bar: {groupWidth: "70%"},
     legend: { position: "none" },
+    vAxis: {minValue: 0}
   };
   var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
   chart.draw(view, options);

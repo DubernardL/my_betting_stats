@@ -80,7 +80,6 @@ class PagesController < ApplicationController
     @losing_bets.each { |bet| odd_arr_lose << bet.odd }
     odd_arr_lose.count == 0 ? @medium_odd_lose = 0 : @medium_odd_lose = odd_arr_lose.inject(0){|sum,x| sum + x } / odd_arr_lose.count
 
-
     # Medium bet amount
     amount_arr = []
     @bets.each { |bet| amount_arr << bet.bet_amount }

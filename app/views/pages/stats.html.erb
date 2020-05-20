@@ -1,6 +1,12 @@
 <div class="container">
   <h1>Statistics</h1>
 
+  <% if @finished_bets.empty? %>
+    <p>Find here your betting statistics. Add your first bet: <a href="<%= new_bet_path %>">add a bet</a></p>
+    <p>Or save the results of your <a href="<%= pending_bets_path %>">pending bets</a></p>
+    <br />
+  <% end %>
+
   <h2>General stats</h2>
 
   <div class="section general-stats">
@@ -175,7 +181,7 @@
     <% if @finished_bets.length != 0 %>
       <% @types.each do |key, value| %>
         <div class="stat">
-          <h3><%= key == "" ? "Combined bet" : key %></h3>
+          <h3><%= key %></h3>
           <p><%= value %></p>
         </div>
         <% if @types_win.has_key?(key) %>
@@ -201,7 +207,7 @@
 
 </div>
 
-<!-- graphics -->
+<!-- GRAPH -->
 <script>
   const result_bet_graph = [['result', 'percentage'], ["Win", <%= @percentage_win %>], ["lose", <%= @percentage_lose %>]];
 
